@@ -19,12 +19,12 @@ class Graph {
 
 	private:
 		void bubbleSort();
+		int dichotomySearch(int i, int j);
 
 	public:
 		Graph(string fileName);			// Lit un fichier pour construire l'instance
 		~Graph();
 		bool areLinked(int v1, int v2);	// Vrai si les sommets i et j sont reliés
-		int dichotomySearch(int i, int j);
 
 		// DEBUG
 		void showGraph();
