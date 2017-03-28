@@ -1,12 +1,13 @@
 #include "Graph.hpp"
 
-#include "../Functions/Functions.hpp"
-
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <cassert>
 
 using namespace std;
+
+
 
 Graph::Graph(string fileName) {
 	srand(5);
@@ -32,8 +33,9 @@ Graph::Graph(string fileName) {
 				f >> vj;
 				_vertices[i][j] = vj;
 			}
-			bubbleSortVertices(_vertices[i], cardV);
 		}
+
+		bubbleSort();
 
 		f.close();
 	} else {
@@ -43,13 +45,81 @@ Graph::Graph(string fileName) {
 
 Graph::~Graph() {}
 
+void Graph::bubbleSort() {
+	bool sorted;
+	int tmp;
+	int size, nextSize;
+
+	for (int i = 0; i < _cardG; ++i) {
+		size = _cardV[i];
+		do {
+			sorted = true;
+			for (int j = 1; j < size; ++j) {
+				if (_vertices[i][j-1] > _vertices[i][j]) {
+					sorted = false;
+					tmp = _vertices[i][j];
+					_vertices[i][j] = _vertices[i][j-1];
+					_vertices[i][j-1] = tmp;
+					nextSize = j;
+				}
+			}
+			size = nextSize;
+		} while (!sorted);
+	}
+}
+
+int Graph::dichotomySearch(int i, int j) {
+	assert(i >= 0);
+	assert(j >= 0);
+	assert(i < _cardG);
+	assert(j < _cardG);
+
+	int ind, size, tmp;
+	int *tabV;
+
+	if (_cardV[j] < _cardV[i]) {
+		tmp = i;
+		i = j;
+		j = tmp;
+	}
+
+	size = _cardV[i];
+	tabV = _vertices[i];
+
+	if ((j >= tabV[0]) && (j <= tabV[size-1])) {
+		int lower, upper, indVal;
+		lower = 0;
+		upper = size;
+		ind = upper/2;
+		indVal = tabV[ind];
+
+		while ((upper > lower+1) && (indVal != j)) {
+			if (indVal > j) {
+				upper = ind;
+			} else {
+				lower = ind;
+			}
+			ind = lower + (upper-lower)/2;
+			indVal = tabV[ind];
+		}
+
+		if (indVal != j) {
+			ind = -1;
+		}
+	} else {
+		ind = -1;
+	}
+
+	return ind;
+}
+
 bool Graph::areLinked(int v1, int v2) {
 	bool res;
 
 	if (_cardV[v1] < _cardV[v2]) {
-		res = (dichotomySearch(_vertices[v1], _cardV[v1], v2) != -1);
+		res = (dichotomySearch(v1, v2) != -1);
 	} else {
-		res = (dichotomySearch(_vertices[v2], _cardV[v2], v1) != -1);
+		res = (dichotomySearch(v1, v2) != -1);
 	}
 
 	return res;
