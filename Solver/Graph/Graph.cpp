@@ -10,14 +10,13 @@ using namespace std;
 
 
 Graph::Graph(string fileName) {
-	srand(5);
 	ifstream f(fileName.c_str());
 
 	if (f) {
 		int i, j;
 		int tmp, vi, vj, cardG, cardV;
 		f >> cardG;
-		f >> tmp;	// On utilise pas encore le nombre d'arêtes
+		f >> _nbEdges;	// On utilise pas encore le nombre d'arêtes
 
 		_cardG = cardG;
 		_cardV = new int [cardG];
@@ -40,6 +39,22 @@ Graph::Graph(string fileName) {
 		f.close();
 	} else {
 		cout << "Fichier inexistant" << endl;
+	}
+}
+
+Graph::Graph(const Graph &g) {
+	int cardV;
+
+	_cardG = g._cardG;
+	_cardV = new int [_cardG];
+	_vertices = new int * [_cardG];
+	for (int i = 0; i < _cardG; ++i) {
+		cardV = g._cardV[i];
+		_cardV[i] = cardV;
+		_vertices[i] = new int [cardV];
+		for (int j = 0; j < cardV; ++j) {
+			_vertices[i][j] = g._vertices[i][j];
+		}
 	}
 }
 
@@ -77,12 +92,6 @@ int Graph::dichotomySearch(int i, int j) {
 	int ind, size, tmp;
 	int *tabV;
 
-	if (_cardV[j] < _cardV[i]) {
-		tmp = i;
-		i = j;
-		j = tmp;
-	}
-
 	size = _cardV[i];
 	tabV = _vertices[i];
 
@@ -117,12 +126,44 @@ bool Graph::areLinked(int v1, int v2) {
 	bool res;
 
 	if (_cardV[v1] < _cardV[v2]) {
-		res = (dichotomySearch(v1, v2) != -1);
+		res = (dichotomySearch(v2, v1) != -1);
 	} else {
 		res = (dichotomySearch(v1, v2) != -1);
 	}
 
 	return res;
+}
+
+int Graph::getCardG() {
+	return _cardG;
+}
+
+int Graph::getNbEdges() {
+	return _nbEdges;
+}
+
+int Graph::getCardV(int i) {
+	return _cardV[i];
+}
+
+int *Graph::getVertices (int v) {
+	return _vertices[v];
+}
+
+void Graph::deleteVertex(int v) {
+	int cardV = _cardV[v];
+	int v2, indV, cardV2;
+
+	for (int i = 0; i < cardV; ++i) {
+		v2 = _vertices[v][i];
+		cardV2 = _cardV[v2];
+		indV = dichotomySearch(v2, v);
+		for (indV = indV+1; indV < cardV2; ++indV) {
+			_vertices[v2][indV-1] = _vertices[v2][indV];
+		}
+		_cardV[v2] = cardV2-1;
+	}
+	_cardV[v] = 0;
 }
 
 void Graph::showGraph() {
