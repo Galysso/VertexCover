@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void deux_approx(Graph &g) {
+void IPL_VC(Graph &g) {
 	int *ia, *ja;
 	double *ar;
 	glp_prob *prob = glp_create_prob();
@@ -53,8 +53,8 @@ void deux_approx(Graph &g) {
 	}
 
 	glp_load_matrix(prob, cptMax, ia, ja, ar);
-	glp_write_lp(prob, NULL, "modelisation");
 	glp_simplex(prob, NULL);
+	glp_write_lp(prob, NULL, "modelisation");
 
 	double val;
 	cout << "{";

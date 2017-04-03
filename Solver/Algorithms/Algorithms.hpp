@@ -5,6 +5,6 @@
 
 void glouton_VC(Graph &g);
 
-void deux_approx(Graph &g);
+void IPL_VC(Graph &g);
 
 #endif
