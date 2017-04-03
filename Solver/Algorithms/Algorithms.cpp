@@ -38,7 +38,7 @@ void deux_approx(Graph &g) {
 				ia[cpt] = cpt/2+1;
 				ja[cpt]	= v1+1;
 				ar[cpt] = 1;
-				
+
 				++cpt;
 				cout << cpt << endl;
 				cout << "ia=" << cpt/2 << endl;
