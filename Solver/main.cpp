@@ -11,7 +11,7 @@ int main() {
 
 	g.showGraph();
 
-	deux_approx(g);
+	IPL_VC(g);
 
 	cout << endl << "COCO" << endl << endl;
 
