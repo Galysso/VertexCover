@@ -11,7 +11,9 @@ int main() {
 
 	g.showGraph();
 
-	IPL_VC(g);
+	KERNEL_VC(g,5);
+	//ARB_VC(g);
+	//IPL_VC(g);
 
 	cout << endl << "COCO" << endl << endl;
 

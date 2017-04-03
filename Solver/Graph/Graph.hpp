@@ -27,7 +27,7 @@ class Graph {
 		Graph(const Graph &g);
 		~Graph();
 		bool areLinked(int v1, int v2);		// Vrai si les sommets i et j sont reliés
-		int getCardG();						// Renvoie la cardinalité du graphe
+		int getCardG();						// Renvoie la cardinalité du graphe /le nombre de sommets
 		int getNbEdges();					// Renvoie le nombre d'arêtes dans le graphe
 		int getCardV(int i);				// Renvoie la cardinalité du sommet i
 		int *getVertices(int v);			// Renvoie la liste des sommets reliés au sommet v
