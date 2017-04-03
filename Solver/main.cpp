@@ -12,7 +12,9 @@ int main() {
 	g.showGraph();
 
 	bool *solution = new bool [g.getCardG()];	
-	ARB_VC(g);
+	ARB_VC(g, solution);
+
+	//KERNEL_VC(g,5);
 
 	cout << endl << "COCO" << endl << endl;
 

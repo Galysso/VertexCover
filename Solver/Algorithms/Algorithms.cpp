@@ -2,12 +2,91 @@
 
 #include <glpk.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
-void KERNEL_VC(Graph &g){
+int isSolution(Graph &g, int* T){
+	//pour chaque sommet, si deg>0 ou il est dans le VC, ou tous ses voisins y sont
+	for(int i = 0;i<g.getCardG();i++){
+		if(T[i]!=1){
+			for(int j=0;j<g.getCardV(i);j++){
+				if(T[g.getVertices(i)[j]]!=1){
+					printf("\npas bon\n");
+					return 0;
+				}
+			}
+		}
+	}
+	return 1;
+}
 
+void next(Graph &g, int* VC1, int* VC2, int* VC3, int k){
+	//on calcule le next
+	//CA MENERVEUHHH
+
+	//on vérifie la solution trouvée
+	for(int i = 0;i<g.getCardG();i++){
+		VC3[i] = VC1[i]||VC2[i];
+		printf("%4d",VC3[i]);
+	}
+
+	printf("\n%d\n", isSolution(g,VC3));
+}
+
+void KERNEL_VC(Graph &g,int k){
+	/*int possible = 1;
+	int korigine = k;
+	int VC1[g.getCardG()]={0};
+
+	//Etape 1 : application de VC1 et VC2 tant que c'est possible
+	while(possible){
+		possible = 0;
+		for(int i = 0;i<g.getCardG();i++){
+			//règle 1
+			if(g.getCardV(i) == 1){
+				VC1[g.getVertices(i)[0]]=1;
+				printf("delete : %d\n",g.getVertices(i)[0]);
+				g.deleteVertex(g.getVertices(i)[0]);
+				possible = 1;
+				k--;
+			}
+			//règle 2
+			if(g.getCardV(i) >= k+1){
+				VC1[i]=1;
+				printf("delete : %d\n",i);
+				g.deleteVertex(i);
+				possible = 1;
+				k--;
+			}
+		}
+		printf("k = %d\n", k);
+		possible = (k>0&&possible);
+	}
+
+	//Etape 2 : brute force sur ce qui reste
+	int VC2[g.getCardG()]={0};
+	int VC3[g.getCardG()]={0};
+	int nb = 0;
+	for(int i = 0;i<g.getCardG();i++){
+		if(g.getCardV(i)>0)
+			nb++;
+	}
+	printf("\nnb de sommets >0 : %d\n", nb);
+	if(nb/2<k){
+		printf("%d\n", korigine);
+	}
+	//on prend k sommets parmi n
+	int kencours = k;
+	for(int i = 0;i<g.getCardG();i++){
+		if(VC1[i]==0&&kencours>0){//&&g.getCardV(i)>0)
+			VC2[i] = 1;
+			kencours--;
+		}
+	}
+
+	next(g,VC1,VC2,VC3,k);*/
 }
 
 void retirerInf3(Graph &g, int *vertices, int &size) {
