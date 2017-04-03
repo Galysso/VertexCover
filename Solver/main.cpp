@@ -7,11 +7,12 @@ using namespace std;
 
 int main() {
 
-	Graph g("../Instances/jouetManuel11");
+	Graph g("../Instances/petitTest10");
 
 	g.showGraph();
 
-	IPL_VC(g);
+	bool *solution = new bool [g.getCardG()];	
+	ARB_VC(g);
 
 	cout << endl << "COCO" << endl << endl;
 

@@ -10,8 +10,50 @@ void KERNEL_VC(Graph &g){
 
 }
 
-int ARB_VC(Graph &g){
-	
+void retirerInf3(Graph &g, int *vertices, int &size) {
+	int decal = 0;
+	int v;
+	for (int i = 0; i < size; ++i) {
+		v = vertices[i+decal];
+		vertices[i] = v;
+		if (g.getCardV(vertices[i]) < 3) {
+			++decal;
+			vertices[i] = vertices[i+decal];
+			--i;
+			--size;
+		}
+	}
+}
+
+void ARB_VC(Graph &g, bool *solution){
+	int *vertices3 = new int [g.getCardG()];
+	int nVertices = g.getCardG();
+	for (int i = 0; i < nVertices; ++i) {
+		vertices3[i] = i;
+		solution[i] = false;
+	}
+	//int nSol = 0;
+
+	retirerInf3(g, vertices3, nVertices);
+	int *voisins;
+	int nbVois;
+	int u, vois;
+
+	if (nVertices > 0) {
+		u = vertices3[0];
+		if (solution[u]) {
+			g.deleteVertex(u);
+
+
+			nbVois = g.getCardV(u);
+			voisins = g.getVertices(u);
+			for (int i = 0; i < nbVois; ++i) {
+				vois = voisins[i];
+				solution[vois] = true;
+				g.deleteVertex(vois);
+			}
+		}
+	}
 }
 
 void IPL_VC(Graph &g) {
