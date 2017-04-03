@@ -7,17 +7,19 @@
 using namespace std;
 
 void deux_approx(Graph &g) {
-	int *ia, *ja, *ar;
+	int *ia, *ja;
+	double *ar;
 	glp_prob *prob = glp_create_prob();
+	glp_set_prob_name(prob, "deux_approx");
 	glp_set_obj_dir(prob, GLP_MIN);
 	glp_add_rows(prob, g.getNbEdges());
 	glp_add_cols(prob, g.getCardG());
 
 	int cptMax = g.getNbEdges()*2;
 
-	ia = new int [cptMax];
-	ja = new int [cptMax];
-	ar = new int [cptMax];
+	ia = new int [cptMax+1];
+	ja = new int [cptMax+1];
+	ar = new double [cptMax+1];
 
 	cout << "cptMax=" << cptMax << endl;
 
@@ -27,36 +29,40 @@ void deux_approx(Graph &g) {
 	int cpt = 1;
 	for (int v1 = 0; v1 < g.getCardG(); ++v1) {
 		glp_set_obj_coef(prob, v1+1, 1);
+		glp_set_col_bnds(prob, v1+1, GLP_DB, 0.0, 1.0);
 		vertices = g.getVertices(v1);
 		cardV = g.getCardV(v1);
 		for (int indV2 = 0; indV2 < cardV; ++indV2) {
 			v2 = vertices[indV2];
 			if (v2 > v1) {
-				cout << cpt << endl;
-				cout << "ia=" << cpt/2+1 << endl;
-				cout << "ja=" << v1+1 << endl;
 				ia[cpt] = cpt/2+1;
 				ja[cpt]	= v1+1;
-				ar[cpt] = 1;
+				ar[cpt] = 1.0;
 				
 				++cpt;
-				cout << cpt << endl;
-				cout << "ia=" << cpt/2 << endl;
-				cout << "ja=" << v2+1 << endl;
+
 				ia[cpt] = cpt/2;
 				ja[cpt] = v2+1;
-				ar[cpt] = 1;
-
-				cout << endl;
+				ar[cpt] = 1.0;
 
 				++cpt;
 
-				glp_set_row_bnds(prob, cpt/2, GLP_UP, 1.0, 1.0);
+				glp_set_row_bnds(prob, cpt/2, GLP_LO, 1.0, 1.0);
 			}
 		}
 	}
 
+	glp_load_matrix(prob, cptMax, ia, ja, ar);
+	glp_write_lp(prob, NULL, "modelisation");
 	glp_simplex(prob, NULL);
+
+	double val;
+	cout << "{";
+	for (int v1 = 0; v1 < g.getCardG(); ++v1) {
+		val = glp_mip_col_val(prob, v1+1);
+		cout << val << ",";
+	}
+	cout << "} (" << glp_mip_obj_val(prob) << ")" << endl;
 }
 
 void glouton_VC(Graph &g) {
