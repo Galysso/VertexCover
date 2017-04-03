@@ -6,6 +6,14 @@
 
 using namespace std;
 
+void KERNEL_VC(Graph &g){
+
+}
+
+int ARB_VC(Graph &g){
+	
+}
+
 void IPL_VC(Graph &g) {
 	int *ia, *ja;
 	double *ar;
@@ -37,13 +45,7 @@ void IPL_VC(Graph &g) {
 			if (v2 > v1) {
 				ia[cpt] = cpt/2+1;
 				ja[cpt]	= v1+1;
-<<<<<<< HEAD
-				ar[cpt] = 1;
-
-=======
 				ar[cpt] = 1.0;
-				
->>>>>>> 886e3925210ede7c827155d7a451baa464a8ee96
 				++cpt;
 
 				ia[cpt] = cpt/2;

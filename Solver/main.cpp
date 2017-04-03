@@ -15,5 +15,5 @@ int main() {
 
 	cout << endl << "COCO" << endl << endl;
 
-	return 0; 
+	return 0;
 }
