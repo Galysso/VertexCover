@@ -87,7 +87,9 @@ void KERNEL_VC(Graph &g,int k){
 	}
 
 	next(g,VC1,VC2,VC3,k);
+	next(g,VC1,VC2,VC3,k);
 }
+
 
 int ARB_VC(Graph &g){
 	int VC[g.getCardG()]={0};
