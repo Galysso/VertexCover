@@ -7,14 +7,15 @@ using namespace std;
 
 int main() {
 
-	Graph g("../Instances/petitTest10");
+	Graph g("../Instances/petitTestFelix");
 
 	g.showGraph();
 
-	bool *solution = new bool [g.getCardG()];	
-	ARB_VC(g, solution);
+	bool *solution = new bool [g.getCardG()];
+	//IPL_VC(g);
+	//ARB_VC(g, solution);
 
-	//KERNEL_VC(g,5);
+	KERNEL_VC(g,5);
 
 	cout << endl << "COCO" << endl << endl;
 

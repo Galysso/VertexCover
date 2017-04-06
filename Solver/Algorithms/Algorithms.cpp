@@ -1,4 +1,5 @@
 #include "Algorithms.hpp"
+#include "Functions.hpp"
 
 #include <glpk.h>
 #include <stdlib.h>
@@ -7,38 +8,13 @@
 
 using namespace std;
 
-int isSolution(Graph &g, int* T){
-	//pour chaque sommet, si deg>0 ou il est dans le VC, ou tous ses voisins y sont
-	for(int i = 0;i<g.getCardG();i++){
-		if(T[i]!=1){
-			for(int j=0;j<g.getCardV(i);j++){
-				if(T[g.getVertices(i)[j]]!=1){
-					printf("\npas bon\n");
-					return 0;
-				}
-			}
-		}
-	}
-	return 1;
-}
-
-void next(Graph &g, int* VC1, int* VC2, int* VC3, int k){
-	//on calcule le next
-	//CA MENERVEUHHH
-
-	//on vérifie la solution trouvée
-	for(int i = 0;i<g.getCardG();i++){
-		VC3[i] = VC1[i]||VC2[i];
-		printf("%4d",VC3[i]);
-	}
-
-	printf("\n%d\n", isSolution(g,VC3));
-}
-
 void KERNEL_VC(Graph &g,int k){
 	int possible = 1;
 	int korigine = k;
-	int VC1[g.getCardG()]={0};
+	int *VC1 = new int [g.getCardG()];
+	for (int i = 0; i < g.getCardG(); ++i) {
+		VC1[i] = 0;
+	}
 
 	//Etape 1 : application de VC1 et VC2 tant que c'est possible
 	while(possible){
@@ -66,8 +42,12 @@ void KERNEL_VC(Graph &g,int k){
 	}
 
 	//Etape 2 : brute force sur ce qui reste
-	int VC2[g.getCardG()]={0};
-	int VC3[g.getCardG()]={0};
+	int *VC2 = new int [g.getCardG()];
+	int *VC3 = new int [g.getCardG()];
+	for (int i = 0; i < g.getCardG(); ++i) {
+		VC2[i] = 0;
+		VC3[i] = 0;
+	}
 	int nb = 0;
 	for(int i = 0;i<g.getCardG();i++){
 		if(g.getCardV(i)>0)
@@ -93,22 +73,6 @@ void KERNEL_VC(Graph &g,int k){
 
 int ARB_VC(Graph &g){
 	
-}
-
-void retirerInf3(Graph &g, int *vertices, int &size) {
-	int decal = 0;
-	int v;
-	for (int i = 0; i < size; ++i) {
-		v = vertices[i+decal];
-		vertices[i] = v;
-		if (g.getCardV(vertices[i]) < 3) {
-			++decal;
-			vertices[i] = vertices[i+decal];
-			--i;
-			--size;
->>>>>>> beef27525101f4bc89814178298c036763dc94cc
-		}
-	}
 }
 
 void ARB_VC(Graph &g, bool *solution){
@@ -188,14 +152,17 @@ void IPL_VC(Graph &g) {
 	}
 
 	glp_load_matrix(prob, cptMax, ia, ja, ar);
-	glp_simplex(prob, NULL);
 	glp_write_lp(prob, NULL, "modelisation");
+	glp_simplex(prob, NULL);
+	glp_intopt(prob, NULL);
 
 	double val;
 	cout << "{";
 	for (int v1 = 0; v1 < g.getCardG(); ++v1) {
 		val = glp_mip_col_val(prob, v1+1);
-		cout << val << ",";
+		if (val >= 0.5 - 0.00001) {
+			cout << v1 << ",";
+		}
 	}
 	cout << "} (" << glp_mip_obj_val(prob) << ")" << endl;
 }
