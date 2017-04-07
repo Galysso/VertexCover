@@ -3,8 +3,6 @@
 
 #include "../Graph/Graph.hpp"
 
-void retirerInf3(Graph &g,bool *vertices);
-
 void glouton_VC(Graph &g);
 
 void IPL_VC(Graph &g);
