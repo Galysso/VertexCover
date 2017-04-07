@@ -11,10 +11,9 @@
  * 				V3 |V3| VC30 VC31\n
  * 				V4 |V4| VC40 VC41 VC42\n
  * 
- * \param 1 (card)	: graph cardinality, |V| (card > 1)
- * \param 2 (min)	: minimum degree of vertices ((min > 0) AND (min < card))
- * \param 3 (max)	: maximum degree of vertices ((max > min-1) AND (min < card))
- * \param 4 (file)	: name of the generated file
+ * \param 1 (card)			: graph cardinality, |V| (card > 1)
+ * \param 2 (probability)	: the probability
+ * \param 3 (file)			: name of the generated file
  */
 
 #ifndef GENERATOR_HPP
@@ -31,23 +30,6 @@ bool stringIsInt(char *string);
  * \brief check the given parameters when the program is executed
  */
 void checkParameters(int argc, char *argv[]);
-
-/*!
- * \brief Delete the element of a table at the given position and shift the table
- * \param ind the index of the element to delete
- * \param size the size of the table
- * \param table the table
- */
-void deleteElement(int ind, int *size, int *table);
-
-/*!
- * \brief Delete two elements of a table at the given positions and shift the table
- * \param ind1 the index of the first element to delete
- * \param ind2 the index of the second element to delete
- * \param size the size of the table
- * \param table the table
- */
-void deleteTwoElements(int ind1, int ind2, int *size, int *table);
 
 /*!
  * \brief Connect two vertices in the graph
@@ -73,6 +55,6 @@ bool areConnected(int V1, int V2, int **graph);
  * \param max the maximum cardinality of the vertices (it can be violated sometimes)
  * \param filename the file in which the instance is written
  */
-void generate(int card, int min, int max, char *fileName);
+void generate(int card, double prob, char *fileName);
 
 #endif //GENERATOR_HPP
