@@ -7,17 +7,18 @@ using namespace std;
 
 int main() {
 
-	Graph g("../Instances/petitTestFelix");
+	Graph g("../Instances/petitTest10");
 
 	g.showGraph();
 
 	bool *solution = new bool [g.getCardG()];
+	//glouton_VC(g);
 	//IPL_VC(g);
 	//ARB_VC(g, solution);
 
 	KERNEL_VC(g,5);
 
-	cout << endl << "COCO" << endl << endl;
+	//cout << endl << "COCO" << endl << endl;
 
 	return 0;
 }

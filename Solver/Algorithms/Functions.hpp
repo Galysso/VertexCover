@@ -7,6 +7,9 @@ void retirerInf3(Graph &g, int *vertices, int &size);
 
 int isSolution(Graph &g, int* T);
 
-void next(Graph &g, int* VC1, int* VC2, int* VC3, int k);
+int* next(int* VC1, int* VC3, int k,int n);
+
+void afficher(int L[],int n);
+int testnext(int L[],int VC1[],int n);
 
 #endif

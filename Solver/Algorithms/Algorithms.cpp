@@ -11,19 +11,20 @@ using namespace std;
 void KERNEL_VC(Graph &g,int k){
 	int possible = 1;
 	int korigine = k;
-	int *VC1 = new int [g.getCardG()];
-	for (int i = 0; i < g.getCardG(); ++i) {
+	int n = g.getCardG();
+	int *VC1 = new int [n];
+	for (int i = 0; i < n; ++i) {
 		VC1[i] = 0;
 	}
 
 	//Etape 1 : application de VC1 et VC2 tant que c'est possible
 	while(possible){
 		possible = 0;
-		for(int i = 0;i<g.getCardG();i++){
+		for(int i = 0;i<n;i++){
 			//règle 1
 			if(g.getCardV(i) == 1){
 				VC1[g.getVertices(i)[0]]=1;
-				printf("delete : %d\n",g.getVertices(i)[0]);
+				cout<<"delete : "<<g.getVertices(i)[0]<<endl;
 				g.deleteVertex(g.getVertices(i)[0]);
 				possible = 1;
 				k--;
@@ -31,48 +32,68 @@ void KERNEL_VC(Graph &g,int k){
 			//règle 2
 			if(g.getCardV(i) >= k+1){
 				VC1[i]=1;
-				printf("delete : %d\n",i);
+				cout<<"delete : "<<i<<endl;
 				g.deleteVertex(i);
 				possible = 1;
 				k--;
 			}
 		}
-		printf("k = %d\n", k);
+		//printf("k = %d\n", k);
 		possible = (k>0&&possible);
-	}
-
-	//Etape 2 : brute force sur ce qui reste
-	int *VC2 = new int [g.getCardG()];
-	int *VC3 = new int [g.getCardG()];
-	for (int i = 0; i < g.getCardG(); ++i) {
-		VC2[i] = 0;
-		VC3[i] = 0;
-	}
-	int nb = 0;
-	for(int i = 0;i<g.getCardG();i++){
-		if(g.getCardV(i)>0)
-			nb++;
-	}
-	printf("\nnb de sommets >0 : %d\n", nb);
-	if(nb/2<k){
-		printf("%d\n", korigine);
-	}
-	//on prend k sommets parmi n
-	int kencours = k;
-	for(int i = 0;i<g.getCardG();i++){
-		if(VC1[i]==0&&kencours>0){//&&g.getCardV(i)>0)
-			VC2[i] = 1;
-			kencours--;
+		if(k<0){
+			cout<<"k = "<<korigine<<", pas possible"<<endl;
+			return;
 		}
 	}
 
-	next(g,VC1,VC2,VC3,k);
-	next(g,VC1,VC2,VC3,k);
+	//Etape 2 : brute force sur ce qui reste
+	int *L = new int [n];
+	for (int i = 0; i < n; ++i) {
+		L[i] = 0;
+	}
+
+	//s'il reste un k assez grand pour tout couvrir : stop
+	int nb = 0;
+	for(int i = 0;i<n;i++){
+		if(g.getCardV(i)>0)
+			nb++;
+	}
+	//printf("\nnb de sommets >0 : %d\n", nb);
+	if(nb/2<k){
+		cout<<"on arrête là, pas besoin de l'exhaustif : k = "<< korigine<<endl;
+		return;
+	}
+	cout<<"On continue (k<nb de sommets avec arêtes restants /2): \n\texhaustif pour la fin\n\n"<<endl;
+
+	/****************************A ENLEVER **********************************************/
+	VC1[5]=1;
+	/************************************************************************************/
+
+	//on prend k sommets parmi n
+	int kencours = k;
+	for(int i = 0;i<n;i++){
+		if(VC1[i]==0&&kencours>0){//&&g.getCardV(i)>0)
+			L[i] = 1;
+			kencours--;
+		}
+		if(VC1[i]==1)
+			L[i] = 1;
+	}
+
+	afficher(L,n);
+	while(testnext(L,VC1,n)&&!isSolution(g,L)){
+		//cout<<"laaaa"<<endl;
+		L = next(VC1,L,k,n);
+		afficher(L,n);
+	}
+	if(isSolution(g,L)){
+		cout<<"Solution pour k = "<<korigine<<endl;
+	}
 }
 
 
 int ARB_VC(Graph &g){
-	
+
 }
 
 void ARB_VC(Graph &g, bool *solution){
