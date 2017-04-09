@@ -6,18 +6,64 @@
 using namespace std;
 
 int main() {
+	for(int i=10; i < 100; i+=10) {
+		string chemin = "../Instances/"+to_string(i)+"dlogn";
 
-	Graph g("../Instances/petitTest10");
+		Graph gExact(chemin);
+		optimal(gExact);
 
-	g.showGraph();
+		Graph gGlouton(chemin);
+		glouton_VC(gGlouton);
 
-	bool *solution = new bool [g.getCardG()];
-	//glouton_VC(g);
-	//IPL_VC(g);
-	ARB_VC(g, 5);
-	//KERNEL_VC(g,5);
+		Graph gIpl(chemin);
+		IPL_VC(gIpl);
 
-	cout << endl << "COCO" << endl << endl;
+		Graph gArb(chemin);
+		ARB_VC(gArb,500);
+
+		Graph gKernel(chemin);
+		KERNEL_VC(gKernel,384);
+
+		//cout << endl;
+	}
+	for(int i=100; i < 500; i+=20) {
+		string chemin = "../Instances/"+to_string(i)+"dlogn";
+
+		Graph gExact(chemin);
+		optimal(gExact);
+
+		Graph gGlouton(chemin);
+		glouton_VC(gGlouton);
+
+		Graph gIpl(chemin);
+		IPL_VC(gIpl);
+
+		Graph gArb(chemin);
+		ARB_VC(gArb,500);
+
+		Graph gKernel(chemin);
+		KERNEL_VC(gKernel,384);
+
+		//cout << endl;
+	}
+	for(int i=500; i<1000; i=i+50){
+		string chemin = "../Instances/"+to_string(i)+"dlogn";
+
+		Graph gExact(chemin);
+		optimal(gExact);
+
+		Graph gGlouton(chemin);
+		glouton_VC(gGlouton);
+
+		Graph gIpl(chemin);
+		IPL_VC(gIpl);
+
+		Graph gArb(chemin);
+		ARB_VC(gArb,500);
+
+		Graph gKernel(chemin);
+		KERNEL_VC(gKernel,384);
+	}
 
 	return 0;
 }

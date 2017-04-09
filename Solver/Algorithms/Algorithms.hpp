@@ -3,6 +3,8 @@
 
 #include "../Graph/Graph.hpp"
 
+void optimal(Graph &g);
+
 void glouton_VC(Graph &g);
 
 void IPL_VC(Graph &g);

@@ -1,5 +1,6 @@
 CXX = g++
 SOURCES = Graph/Graph.cpp Algorithms/Algorithms.cpp Algorithms/Functions.cpp
+CXXFLAGS = -std=c++11 
 CFLAGS = -Wall -g -Ofast
 LDFLAGS = -lm -lglpk
 .PHONY = clean

@@ -10,7 +10,7 @@
  * 				V2 |V2| VC20\n
  * 				V3 |V3| VC30 VC31\n
  * 				V4 |V4| VC40 VC41 VC42\n
- * 
+ *
  * \param 1 (card)			: graph cardinality, |V| (card > 1)
  * \param 2 (probability)	: the probability
  * \param 3 (file)			: name of the generated file
@@ -55,6 +55,6 @@ bool areConnected(int V1, int V2, int **graph);
  * \param max the maximum cardinality of the vertices (it can be violated sometimes)
  * \param filename the file in which the instance is written
  */
-void generate(int card, double prob, char *fileName);
+void generate(int card, double prob, const char *fileName);
 
 #endif //GENERATOR_HPP
