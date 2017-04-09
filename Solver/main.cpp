@@ -35,19 +35,19 @@ void affichageLatex() {
 		cout<<"$p=4/n$ & "<<m<<" & "<<delta<<" & "<<dMoy<<" & ";
 		// Kernel-VC
 		debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		//	ARB-VC
 		debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		// Greedy-VC
 		debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & ";
 		// IPL-VC
 		debut=clock(); sol=IPL_VC(gIpl); fin=clock();
-		temps = ((fin-debut)*1000)/CLOCKS_PER_SEC;
+		temps = ((fin-debut))/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
 
 
@@ -64,19 +64,19 @@ void affichageLatex() {
 		cout<<"$p=5/n$ & "<<m<<" & "<<delta<<" & "<<dMoy<<" & ";
 		// Kernel-VC
 		debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		//	ARB-VC
 		debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		// Greedy-VC
 		debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & ";
 		// IPL-VC
 		debut=clock(); sol=IPL_VC(gIpl); fin=clock();
-		temps = ((fin-debut)*1000)/CLOCKS_PER_SEC;
+		temps = ((fin-debut))/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
 
 
@@ -93,19 +93,19 @@ void affichageLatex() {
 		cout<<"$p=(log n)/n$ & "<<m<<" & "<<delta<<" & "<<dMoy<<" & ";
 		// Kernel-VC
 		debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		//	ARB-VC
 		debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		// Greedy-VC
 		debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & ";
 		// IPL-VC
 		debut=clock(); sol=IPL_VC(gIpl); fin=clock();
-		temps = ((fin-debut)*1000)/CLOCKS_PER_SEC;
+		temps = ((fin-debut))/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
 
 
@@ -122,19 +122,19 @@ void affichageLatex() {
 		cout<<"$p=1/\\sqrt n$ & "<<m<<" & "<<delta<<" & "<<dMoy<<" & ";
 		// Kernel-VC
 		debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		//	ARB-VC
 		debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		// Greedy-VC
 		debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & ";
 		// IPL-VC
 		debut=clock(); sol=IPL_VC(gIpl); fin=clock();
-		temps = ((fin-debut)*1000)/CLOCKS_PER_SEC;
+		temps = ((fin-debut))/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
 
 
@@ -151,19 +151,19 @@ void affichageLatex() {
 		cout<<"$p=0.1$ & "<<m<<" & "<<delta<<" & "<<dMoy<<" & ";
 		// Kernel-VC
 		debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		//	ARB-VC
 		debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		// Greedy-VC
 		debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & ";
 		// IPL-VC
 		debut=clock(); sol=IPL_VC(gIpl); fin=clock();
-		temps = ((fin-debut)*1000)/CLOCKS_PER_SEC;
+		temps = ((fin-debut))/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
 
 
@@ -180,19 +180,19 @@ void affichageLatex() {
 		cout<<"$p=0.2$ & "<<m<<" & "<<delta<<" & "<<dMoy<<" & ";
 		// Kernel-VC
 		debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		//	ARB-VC
 		debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
 		// Greedy-VC
 		debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
-		temps = (fin-debut)*1000/CLOCKS_PER_SEC;
+		temps = (fin-debut)/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<<" & ";
 		// IPL-VC
 		debut=clock(); sol=IPL_VC(gIpl); fin=clock();
-		temps = ((fin-debut)*1000)/CLOCKS_PER_SEC;
+		temps = ((fin-debut))/CLOCKS_PER_SEC;
 		cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
 
 		i += incr;
