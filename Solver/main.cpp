@@ -6,15 +6,21 @@
 using namespace std;
 
 int main() {
+	for(int i=500;i<1000;i=i+50){
+		string chemin = "../Instances/"+to_string(i)+"dlogn";
 
-	Graph g("../Instances/petitTest10");
+		Graph gGlouton(chemin);
+		glouton_VC(gGlouton);
 
-	g.showGraph();
+		Graph gKernel(chemin);
+		KERNEL_VC(gKernel,384);
+		//IPL_VC(g);
+	}
 
-	bool *solution = new bool [g.getCardG()];
+	//bool *solution = new bool [g.getCardG()];
 	//glouton_VC(g);
 	//IPL_VC(g);
-	ARB_VC(g);
+	//ARB_VC(g);
 	//KERNEL_VC(g,5);
 
 	//cout << endl << "COCO" << endl << endl;

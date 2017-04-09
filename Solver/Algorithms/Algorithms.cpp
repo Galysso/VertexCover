@@ -24,7 +24,7 @@ void KERNEL_VC(Graph &g,int k){
 			//règle 1
 			if(g.getCardV(i) == 1){
 				VC1[g.getVertices(i)[0]]=1;
-				cout<<"delete : "<<g.getVertices(i)[0]<<endl;
+				//cout<<"delete : "<<g.getVertices(i)[0]<<endl;
 				g.deleteVertex(g.getVertices(i)[0]);
 				possible = 1;
 				k--;
@@ -32,7 +32,7 @@ void KERNEL_VC(Graph &g,int k){
 			//règle 2
 			if(g.getCardV(i) >= k+1){
 				VC1[i]=1;
-				cout<<"delete : "<<i<<endl;
+				//cout<<"delete : "<<i<<endl;
 				g.deleteVertex(i);
 				possible = 1;
 				k--;
@@ -60,14 +60,10 @@ void KERNEL_VC(Graph &g,int k){
 	}
 	//printf("\nnb de sommets >0 : %d\n", nb);
 	if(nb/2<k){
-		cout<<"on arrête là, pas besoin de l'exhaustif : k = "<< korigine<<endl;
+		cout<<"C'est possible k = "<< korigine<<endl;
 		return;
 	}
-	cout<<"On continue (k<nb de sommets avec arêtes restants /2): \n\texhaustif pour la fin\n\n"<<endl;
-
-	/****************************A ENLEVER **********************************************/
-	VC1[5]=1;
-	/************************************************************************************/
+	//cout<<"On continue (k<nb de sommets avec arêtes restants /2): \n\texhaustif pour la fin\n\n"<<endl;
 
 	//on prend k sommets parmi n
 	int kencours = k;
@@ -80,11 +76,11 @@ void KERNEL_VC(Graph &g,int k){
 			L[i] = 1;
 	}
 
-	afficher(L,n);
+	//afficher(L,n);
 	while(testnext(L,VC1,n)&&!isSolution(g,L)){
 		//cout<<"laaaa"<<endl;
 		L = next(VC1,L,k,n);
-		afficher(L,n);
+		//afficher(L,n);
 	}
 	if(isSolution(g,L)){
 		cout<<"Solution pour k = "<<korigine<<endl;
@@ -207,7 +203,7 @@ void glouton_VC(Graph &g) {
 
 	cpt = 0;
 
-	cout << "solution gloutonne : {";
+	cout << "solution gloutonne : ";
 	do {
 		best = 0;
 		for (int i = 0; i < cardG; ++i) {
@@ -226,10 +222,9 @@ void glouton_VC(Graph &g) {
 			cpt += 2;
 			g.deleteVertex(v1);
 			g.deleteVertex(v2);
-			cout << v1 << "," << v2 << ",";
-			//cout << "d(" << v1 << ")+d(" << v2 << ")=" << best << endl << endl << endl << endl;
-			//g.showGraph();
+			//cout << v1 << "," << v2 << ",";
 		}
 	} while (best > 0);
-	cout << "} (" << cpt << ")" << endl;
+	/*cout << "} "<<*/
+	cout<<"(" << cpt << ")" << endl;
 }

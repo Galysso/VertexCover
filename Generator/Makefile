@@ -1,7 +1,7 @@
 CXX = g++
 SOURCES = Generator.cpp
 CFLAGS = -Wall -g -O3
-LDFLAGS = -std=c++11
+CXXFLAGS = -std=c++11 
 .PHONY = clean
 
 all: Generator
