@@ -20,12 +20,18 @@ Graph::Graph(string fileName) {
 		f >> _nbEdges;	// On utilise pas encore le nombre d'arêtes
 
 		_cardG = cardG;
+		_delta = 0;
+		_deltaMoy = 0;
 		_cardV = new int [cardG];
 		_vertices = new int * [cardG];
 
 		for (i = 0; i < cardG; ++i) {
 			f >> vi;					// the first column corresponds to vi and corresponds to i
 			f >> cardV;
+			if (cardV > _delta) {
+				_delta = cardV;
+			}
+			_deltaMoy += cardV;
 			_cardV[i] = cardV;
 			_vertices[i] = new int [cardV];
 
@@ -34,6 +40,8 @@ Graph::Graph(string fileName) {
 				_vertices[i][j] = vj;
 			}
 		}
+
+		_deltaMoy /= cardG;
 
 		bubbleSort();
 
@@ -47,7 +55,10 @@ Graph::Graph(const Graph &g) {
 	int cardV;
 
 	_cardG = g._cardG;
+	_nbEdges = g._nbEdges;
 	_cardV = new int [_cardG];
+	_delta = g._delta;
+	_deltaMoy = g._deltaMoy;
 	_vertices = new int * [_cardG];
 	for (int i = 0; i < _cardG; ++i) {
 		cardV = g._cardV[i];
@@ -141,6 +152,14 @@ int Graph::getCardG() {
 
 int Graph::getNbEdges() {
 	return _nbEdges;
+}
+
+int Graph::getDelta() {
+	return _delta;
+}
+
+double Graph::getDeltaMoy() {
+	return _deltaMoy;
 }
 
 int Graph::getCardV(int i) {

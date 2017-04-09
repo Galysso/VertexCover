@@ -3,16 +3,16 @@
 
 #include "../Graph/Graph.hpp"
 
-void optimal(Graph &g);
+int optimal(Graph &g);
 
-void glouton_VC(Graph &g);
+int glouton_VC(Graph &g);
 
-void IPL_VC(Graph &g);
+int IPL_VC(Graph &g);
 
-void ARB_VC(Graph &g, int k_max);
+int ARB_VC(Graph &g, int k_max);
 
-void ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k);
+int ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k, int &nSol);
 
-void KERNEL_VC(Graph &g, int k);
+int KERNEL_VC(Graph &g, int k);
 
 #endif

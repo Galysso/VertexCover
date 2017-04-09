@@ -15,6 +15,8 @@ class Graph {
 	private:
 		int _cardG;							// Le nombre de sommets
 		int _nbEdges;
+		int _delta;
+		double _deltaMoy;
 		int *_cardV;						// Le nombre d'arêtes pour le sommet i
 		int **_vertices;					// Les sommets reliés au sommet i
 
@@ -29,6 +31,8 @@ class Graph {
 		bool areLinked(int v1, int v2);		// Vrai si les sommets i et j sont reliés
 		int getCardG();						// Renvoie la cardinalité du graphe /le nombre de sommets
 		int getNbEdges();					// Renvoie le nombre d'arêtes dans le graphe
+		int getDelta();
+		double getDeltaMoy();
 		int getCardV(int i);				// Renvoie la cardinalité du sommet i
 		int *getVertices(int v);			// Renvoie la liste des sommets reliés au sommet v
 		void deleteVertex(int v);			// Retire toutes les arêtes du graphe reliées au sommet v

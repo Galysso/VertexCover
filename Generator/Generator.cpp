@@ -87,7 +87,7 @@ void generate(int card, double prob, const char *fileName) {
 	for (i = 0; i < card; ++i) {
 		for (j = i+1; j < card; ++j) {
 			probTmp = (((double)(rand()%1000))/1000.0);
-			cout<<probTmp<<"   "<<prob<<endl;
+			//cout<<probTmp<<"   "<<prob<<endl;
 			if (probTmp <= prob) {
 				connect(i, j, graph);
 				++cardE;
@@ -115,15 +115,15 @@ void generate(int card, double prob, const char *fileName) {
 		file << endl;
 	}
 
-	cout << "moy=" << (double)moy/(double)card << endl;
+	/*cout << "moy=" << (double)moy/(double)card << endl;
 	cout << "min=" << minCard << endl;
-	cout << "max=" << maxCard << endl <<endl;
+	cout << "max=" << maxCard << endl <<endl;*/
 	file.close();
 }
 
 void generateAll(){
 
-	/*for(int i = 10;i<100;i=i+10){
+	for(int i = 10;i<100;i=i+10){
 		string nom="../Instances/", nom4n = "d4n", nom5n="d5n", nomlogn="dlogn", nomrn="drn", nom01="d01",nom02="d02";
 		nom = nom+to_string(i);
 
@@ -134,9 +134,9 @@ void generateAll(){
 		nom01 = nom+nom01;
 		nom02 = nom+nom02;
 
-		generate(i,4/i,nom4n.c_str());
-		generate(i,5/i,nom5n.c_str());
-		generate(i,log(i)/i,nomlogn.c_str());
+		generate(i,4/(double)i,nom4n.c_str());
+		generate(i,5/(double)i,nom5n.c_str());
+		generate(i,log(i)/(double)i,nomlogn.c_str());
 		generate(i,1/sqrt(i),nomrn.c_str());
 		generate(i,0.1,nom01.c_str());
 		generate(i,0.2,nom02.c_str());
@@ -152,13 +152,13 @@ void generateAll(){
 		nom01 = nom+nom01;
 		nom02 = nom+nom02;
 
-		generate(i,4/i,nom4n.c_str());
-		generate(i,5/i,nom5n.c_str());
-		generate(i,log(i)/i,nomlogn.c_str());
+		generate(i,4/(double)i,nom4n.c_str());
+		generate(i,5/(double)i,nom5n.c_str());
+		generate(i,log(i)/(double)i,nomlogn.c_str());
 		generate(i,1/sqrt(i),nomrn.c_str());
 		generate(i,0.1,nom01.c_str());
 		generate(i,0.2,nom02.c_str());
-	}*/
+	}
 	for(int i = 500;i<1000;i=i+50){
 		string nom="../Instances/", nom4n = "d4n", nom5n="d5n", nomlogn="dlogn", nomrn="drn", nom01="d01",nom02="d02";
 		nom = nom+to_string(i);
@@ -170,9 +170,9 @@ void generateAll(){
 		nom01 = nom+nom01;
 		nom02 = nom+nom02;
 
-		generate(i,4/i,nom4n.c_str());
-		generate(i,5/i,nom5n.c_str());
-		generate(i,log(i)/i,nomlogn.c_str());
+		generate(i,4/(double)i,nom4n.c_str());
+		generate(i,5/(double)i,nom5n.c_str());
+		generate(i,log(i)/(double)i,nomlogn.c_str());
 		generate(i,1/sqrt(i),nomrn.c_str());
 		generate(i,0.1,nom01.c_str());
 		generate(i,0.2,nom02.c_str());

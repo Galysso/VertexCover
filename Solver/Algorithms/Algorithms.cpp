@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void KERNEL_VC(Graph &g,int k){
+int KERNEL_VC(Graph &g,int k){
 	int possible = 1;
 	int korigine = k;
 	int n = g.getCardG();
@@ -41,8 +41,8 @@ void KERNEL_VC(Graph &g,int k){
 		//printf("k = %d\n", k);
 		possible = (k>0&&possible);
 		if(k<0){
-			cout<<"k = "<<korigine<<", pas possible"<<endl;
-			return;
+			//cout<<"k = "<<korigine<<", pas possible"<<endl;
+			return -1;
 		}
 	}
 
@@ -60,8 +60,8 @@ void KERNEL_VC(Graph &g,int k){
 	}
 	//printf("\nnb de sommets >0 : %d\n", nb);
 	if(nb/2<k){
-		cout<<"C'est possible k = "<< korigine<<endl;
-		return;
+		//cout<<"C'est possible k = "<< korigine<<endl;
+		return -1;
 	}
 	//cout<<"On continue (k<nb de sommets avec arêtes restants /2): \n\texhaustif pour la fin\n\n"<<endl;
 
@@ -83,25 +83,23 @@ void KERNEL_VC(Graph &g,int k){
 		//afficher(L,n);
 	}
 	if(isSolution(g,L)){
-		cout<<"Solution pour k = "<<korigine<<endl;
+		//cout<<"Solution pour k = "<<korigine<<endl;
 	}
 }
 
-void ARB_VC(Graph &g, int k_max) {
-	cout << "solution ARB : ";
+int ARB_VC(Graph &g, int k_max) {
 	bool *solution = new bool [g.getCardG()];
 	for (int i = 0; i < g.getCardG(); ++i) {
 		solution[i] = false;
 	}
 	bool fini = false;
-	ARB_VC_REC(g, solution, fini, k_max, 0);
+	int nSol = 0;
+	ARB_VC_REC(g, solution, fini, k_max, 0, nSol);
 
-	/*for (int j = 0; j < g.getCardG(); ++j) {
-		cout << j << ": " << solution[j] << endl;
-	}*/
+	return nSol;
 }
 
-void ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k) {
+int ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k, int &nSol) {
 	bool sommetSup3 = false;
 	bool *solBis = copierSol(solution, g.getCardG());
 	int i = 0;
@@ -116,7 +114,7 @@ void ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k) {
 				Graph gBis = Graph(g);
 				solBis[i] = true;
 				gBis.deleteVertex(i);
-				ARB_VC_REC(gBis, solBis, fini, k_max, k+1);
+				ARB_VC_REC(gBis, solBis, fini, k_max, k+1, nSol);
 			}
 
 			// CAS 2
@@ -128,7 +126,7 @@ void ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k) {
 					solBis[voisins[0]] = true;
 					gBis.deleteVertex(voisins[0]);
 				}
-				ARB_VC_REC(gBis, solBis, fini, k_max, k+g.getCardV(i));
+				ARB_VC_REC(gBis, solBis, fini, k_max, k+g.getCardV(i), nSol);
 			}
 		}
 		++i;
@@ -139,18 +137,13 @@ void ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k) {
 	}
 
 	if (!sommetSup3) {
-		int n = 0;
-		//g.showGraph();
 		for (int j = 0; j < g.getCardG(); ++j) {
-			//cout << j << ": " << solution[j] << endl;
-			n += solution[j];
+			nSol += solution[j];
 		}
-		cout << " (" << n << ")" << endl;
 	}
 }
 
-void IPL_VC(Graph &g) {
-	cout << "solution relaxée : ";
+int IPL_VC(Graph &g) {
 	int nSol = 0;
 
 	glp_term_out(0);
@@ -213,10 +206,10 @@ void IPL_VC(Graph &g) {
 		}
 	}
 	//cout << "} (" << glp_mip_obj_val(prob) << ")" << endl;
-	cout << " (" << nSol << ")" << endl;
+	return nSol;
 }
 
-void glouton_VC(Graph &g) {
+int glouton_VC(Graph &g) {
 	int v1, v2;
 	int cardG = g.getCardG();
 	int *vertices = new int [cardG];
@@ -224,7 +217,6 @@ void glouton_VC(Graph &g) {
 
 	cpt = 0;
 
-	cout << "solution gloutonne : ";
 	do {
 		best = 0;
 		for (int i = 0; i < cardG; ++i) {
@@ -247,11 +239,10 @@ void glouton_VC(Graph &g) {
 		}
 	} while (best > 0);
 	/*cout << "} "<<*/
-	cout<<"(" << cpt << ")" << endl;
+	return cpt;
 }
 
-void optimal(Graph &g) {
-	cout << "SOLUTION EXACTE : ";
+int optimal(Graph &g) {
 	int nSol = 0;
 
 	glp_term_out(0);
@@ -315,5 +306,5 @@ void optimal(Graph &g) {
 		}
 	}
 	//cout << "} (" << glp_mip_obj_val(prob) << ")" << endl;
-	cout << " (" << nSol << ")" << endl;
+	return nSol;
 }
