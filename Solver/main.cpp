@@ -14,10 +14,10 @@ int main() {
 	bool *solution = new bool [g.getCardG()];
 	//glouton_VC(g);
 	//IPL_VC(g);
-	ARB_VC(g);
+	ARB_VC(g, 5);
 	//KERNEL_VC(g,5);
 
-	//cout << endl << "COCO" << endl << endl;
+	cout << endl << "COCO" << endl << endl;
 
 	return 0;
 }

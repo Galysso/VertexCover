@@ -3,6 +3,8 @@
 
 #include "../Graph/Graph.hpp"
 
+void addVertexCoverFromPaths(Graph &g, bool *sol);
+
 bool *copierSol(bool *s, int n);
 
 void retirerInf3(Graph &g, int *vertices, int &size);

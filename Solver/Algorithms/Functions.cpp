@@ -5,6 +5,45 @@
 
 using namespace std;
 
+void addVertexCoverFromPaths(Graph &g, bool *sol) {
+	int *voisins;
+	int size = 0;
+	int nextV1, nextV2;
+
+	// On retire les chemins
+	for (int i = 0; i < g.getCardG(); ++i) {
+		if (g.getCardV(i) == 1) {
+			nextV2 = g.getVertices(i)[0];
+			while (g.getCardV(nextV2) == 2) {
+				voisins = g.getVertices(nextV2);
+				sol[nextV2] = true;
+				if (nextV2 == voisins[0]) {
+					nextV1 = voisins[1];
+				} else {
+					nextV1 = voisins[0];
+				}
+				g.deleteVertex(nextV2);
+				nextV2 = g.getVertices(nextV1)[0];
+			}
+			sol[nextV2] = true;
+			g.deleteVertex(nextV2);
+		}
+	}
+
+	// On retire les cycles
+	for (int i = 0; i < g.getCardG(); ++i) {
+		if (g.getCardV(i) == 2) {
+			nextV2 = g.getVertices(i)[0];
+			while (g.getCardV(nextV2) == 2) {
+				sol[nextV2] = true;
+				nextV1 = g.getVertices(nextV2)[0];
+				g.deleteVertex(nextV2);
+				nextV2 = g.getVertices(nextV1)[0];
+			}
+		}
+	}
+}
+
 bool *copierSol(bool *s, int n) {
 	bool *res = new bool [n];
 	for (int i = 0; i < n; ++i) {

@@ -91,50 +91,64 @@ void KERNEL_VC(Graph &g,int k){
 	}
 }
 
-void ARB_VC(Graph &g) {
+void ARB_VC(Graph &g, int k_max) {
 	bool *solution = new bool [g.getCardG()];
 	for (int i = 0; i < g.getCardG(); ++i) {
 		solution[i] = false;
 	}
 	bool fini = false;
-	ARB_VC(g, solution, fini);
+	ARB_VC_REC(g, solution, fini, k_max, 0);
+
+	/*for (int j = 0; j < g.getCardG(); ++j) {
+		cout << j << ": " << solution[j] << endl;
+	}*/
 }
 
-void ARB_VC(Graph &g, bool *solution, bool &fini) {
+void ARB_VC_REC(Graph &g, bool *solution, bool &fini, int &k_max, int k) {
 	bool sommetSup3 = false;
 	bool *solBis = copierSol(solution, g.getCardG());
 	int i = 0;
 	int *voisins;
+
 	while ((!fini) && (i < g.getCardG())) {
 		if (g.getCardV(i) >= 3) {
 			sommetSup3 = true;
-			voisins = g.getVertices(i);
 
 			// CAS 1
-			Graph gBis = Graph(g);
-			solBis[i] = true;
-			gBis.deleteVertex(i);
-			ARB_VC(gBis, solBis, fini);
+			if (k < k_max) {
+				Graph gBis = Graph(g);
+				solBis[i] = true;
+				gBis.deleteVertex(i);
+				ARB_VC_REC(gBis, solBis, fini, k_max, k+1);
+			}
 
-			if (!fini) {
-				// CAS 2
-				gBis = Graph(g);
+			// CAS 2
+			if (!fini && (k+g.getCardV(i)-1 < k_max)) {
+				Graph gBis = Graph(g);
 				solBis[i] = false;
-				for (int j = 0; j < g.getCardV(i); ++i) {
-					solBis[voisins[j]] = true;
-					gBis.deleteVertex(voisins[j]);
+				voisins = g.getVertices(i);
+				while (g.getCardV(i) > 0) {
+					solBis[voisins[0]] = true;
+					gBis.deleteVertex(voisins[0]);
 				}
-				ARB_VC(gBis, solBis, fini);
+				ARB_VC_REC(gBis, solBis, fini, k_max, k+g.getCardV(i));
 			}
 		}
 		++i;
 	}
-	fini = !sommetSup3;
+	if (!fini && !sommetSup3) {
+		fini = true;
+		addVertexCoverFromPaths(g, solution);
+	}
 
-	if (fini && !sommetSup3) {
+	if (!sommetSup3) {
+		int n = 0;
+		g.showGraph();
 		for (int j = 0; j < g.getCardG(); ++j) {
 			cout << j << ": " << solution[j] << endl;
+			n += solution[j];
 		}
+		cout << "(" << n << ")" << endl;
 	}
 }
 
