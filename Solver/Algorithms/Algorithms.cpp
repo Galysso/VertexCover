@@ -91,38 +91,49 @@ void KERNEL_VC(Graph &g,int k){
 	}
 }
 
-
-int ARB_VC(Graph &g){
-
-}
-
-void ARB_VC(Graph &g, bool *solution){
-	int *vertices3 = new int [g.getCardG()];
-	int nVertices = g.getCardG();
-	for (int i = 0; i < nVertices; ++i) {
-		vertices3[i] = i;
+void ARB_VC(Graph &g) {
+	bool *solution = new bool [g.getCardG()];
+	for (int i = 0; i < g.getCardG(); ++i) {
 		solution[i] = false;
 	}
-	//int nSol = 0;
+	bool fini = false;
+	ARB_VC(g, solution, fini);
+}
 
-	retirerInf3(g, vertices3, nVertices);
+void ARB_VC(Graph &g, bool *solution, bool &fini) {
+	bool sommetSup3 = false;
+	bool *solBis = copierSol(solution, g.getCardG());
+	int i = 0;
 	int *voisins;
-	int nbVois;
-	int u, vois;
+	while ((!fini) && (i < g.getCardG())) {
+		if (g.getCardV(i) >= 3) {
+			sommetSup3 = true;
+			voisins = g.getVertices(i);
 
-	if (nVertices > 0) {
-		u = vertices3[0];
-		if (solution[u]) {
-			g.deleteVertex(u);
+			// CAS 1
+			Graph gBis = Graph(g);
+			solBis[i] = true;
+			gBis.deleteVertex(i);
+			ARB_VC(gBis, solBis, fini);
 
-
-			nbVois = g.getCardV(u);
-			voisins = g.getVertices(u);
-			for (int i = 0; i < nbVois; ++i) {
-				vois = voisins[i];
-				solution[vois] = true;
-				g.deleteVertex(vois);
+			if (!fini) {
+				// CAS 2
+				gBis = Graph(g);
+				solBis[i] = false;
+				for (int j = 0; j < g.getCardV(i); ++i) {
+					solBis[voisins[j]] = true;
+					gBis.deleteVertex(voisins[j]);
+				}
+				ARB_VC(gBis, solBis, fini);
 			}
+		}
+		++i;
+	}
+	fini = !sommetSup3;
+
+	if (fini && !sommetSup3) {
+		for (int j = 0; j < g.getCardG(); ++j) {
+			cout << j << ": " << solution[j] << endl;
 		}
 	}
 }

@@ -5,6 +5,14 @@
 
 using namespace std;
 
+bool *copierSol(bool *s, int n) {
+	bool *res = new bool [n];
+	for (int i = 0; i < n; ++i) {
+		res[i] = s[i];
+	}
+	return res;
+}
+
 void retirerInf3(Graph &g, int *vertices, int &size) {
 	int decal = 0;
 	int v;

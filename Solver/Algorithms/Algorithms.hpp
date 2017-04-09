@@ -7,8 +7,10 @@ void glouton_VC(Graph &g);
 
 void IPL_VC(Graph &g);
 
-void ARB_VC(Graph &g, bool *solution);
+void ARB_VC(Graph &g);
 
-void KERNEL_VC(Graph &g,int k);
+void ARB_VC(Graph &g, bool *solution, bool &fini);
+
+void KERNEL_VC(Graph &g, int k);
 
 #endif
