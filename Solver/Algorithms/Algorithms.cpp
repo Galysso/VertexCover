@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int KERNEL_VC(Graph &g,int k){
+int KERNEL_VC(Graph &g, int k){
 	int possible = 1;
 	int korigine = k;
 	int n = g.getCardG();
@@ -61,7 +61,7 @@ int KERNEL_VC(Graph &g,int k){
 	//printf("\nnb de sommets >0 : %d\n", nb);
 	if(nb/2<k){
 		//cout<<"C'est possible k = "<< korigine<<endl;
-		return -1;
+		return k;
 	}
 	//cout<<"On continue (k<nb de sommets avec arêtes restants /2): \n\texhaustif pour la fin\n\n"<<endl;
 
@@ -84,7 +84,9 @@ int KERNEL_VC(Graph &g,int k){
 	}
 	if(isSolution(g,L)){
 		//cout<<"Solution pour k = "<<korigine<<endl;
+		return k;
 	}
+	return -1;
 }
 
 int ARB_VC(Graph &g, int k_max) {
