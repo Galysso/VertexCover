@@ -45,7 +45,7 @@ void affichageLatex() {
 			debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -55,7 +55,7 @@ void affichageLatex() {
 			debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -65,7 +65,7 @@ void affichageLatex() {
 			debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -75,7 +75,7 @@ void affichageLatex() {
 			debut=clock(); sol=IPL_VC(gIpl); fin=clock();
 			temps = ((fin-debut))/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -96,8 +96,8 @@ void affichageLatex() {
 		if (booleens[j]) {
 			debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
-			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 0;
+			cout<<temps<<" & "<<sol<<" & "<<360<<" & ";
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -107,7 +107,7 @@ void affichageLatex() {
 			debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -117,7 +117,7 @@ void affichageLatex() {
 			debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & ";
-			booleens[j] = temps < 0;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -127,7 +127,7 @@ void affichageLatex() {
 			debut=clock(); sol=IPL_VC(gIpl); fin=clock();
 			temps = ((fin-debut))/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -150,7 +150,7 @@ void affichageLatex() {
 			debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 0;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -160,7 +160,7 @@ void affichageLatex() {
 			debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -170,7 +170,7 @@ void affichageLatex() {
 			debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & ";
-			booleens[j] = temps < 0;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -180,7 +180,7 @@ void affichageLatex() {
 			debut=clock(); sol=IPL_VC(gIpl); fin=clock();
 			temps = ((fin-debut))/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan \\\\ \\hline" << endl;
 		}
@@ -203,7 +203,7 @@ void affichageLatex() {
 			debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 0;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -213,7 +213,7 @@ void affichageLatex() {
 			debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 0;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -223,7 +223,7 @@ void affichageLatex() {
 			debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -233,7 +233,7 @@ void affichageLatex() {
 			debut=clock(); sol=IPL_VC(gIpl); fin=clock();
 			temps = ((fin-debut))/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan \\\\ \\hline" << endl;
 		}
@@ -256,7 +256,7 @@ void affichageLatex() {
 			debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -266,7 +266,7 @@ void affichageLatex() {
 			debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -276,7 +276,7 @@ void affichageLatex() {
 			debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -286,7 +286,7 @@ void affichageLatex() {
 			debut=clock(); sol=IPL_VC(gIpl); fin=clock();
 			temps = ((fin-debut))/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan \\\\ \\hline" << endl;
 		}
@@ -309,7 +309,7 @@ void affichageLatex() {
 			debut=clock(); sol=KERNEL_VC(gKernel,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -319,7 +319,7 @@ void affichageLatex() {
 			debut=clock(); sol=ARB_VC(gArb,500); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & "<<1<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & nan & ";
 		}
@@ -329,7 +329,7 @@ void affichageLatex() {
 			debut=clock(); sol=glouton_VC(gGlouton); fin=clock();
 			temps = (fin-debut)/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<<" & ";
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan & ";
 		}
@@ -339,7 +339,7 @@ void affichageLatex() {
 			debut=clock(); sol=IPL_VC(gIpl); fin=clock();
 			temps = ((fin-debut))/CLOCKS_PER_SEC;
 			cout<<temps<<" & "<<sol<< " \\\\ \\hline" << endl;
-			booleens[j] = temps < 1;
+			booleens[j] = temps < 360;
 		} else {
 			cout<<"$\\infty$ & nan \\\\ \\hline" << endl;
 		}
